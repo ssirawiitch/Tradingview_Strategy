@@ -1,54 +1,52 @@
-# 📂 TFEX with Open Interest
+# TFEX with Open Interest
 
-โปรเจกต์นี้จัดทำขึ้นเพื่อศึกษาและพัฒนา **กลยุทธ์การเทรดในตลาด TFEX** โดยใช้แนวคิดของ **Open Interest** ที่มีความสัมพันธ์กับพฤติกรรมของราคา
-
----
-
-## 🔍 แนวคิดเบื้องต้น
-
-ในโปรเจกต์นี้ เรานิยาม "เส้น Open Interest" เป็นระดับราคาที่ **หารด้วย 25 แล้วลงตัว** เช่น: 525 550 575
-
+This project was created to study and develop a TFEX trading strategy using the concept of Open Interest that correlates with price behavior.
 
 ---
 
-## 🧪 ขั้นตอนการศึกษา
+## Initial Concept
+
+In this project, we define an "Open Interest line" as a price level that is divisible by 25, such as: 525, 550, 575.
+
+---
+
+## Study Steps
 
 ### 1. Research & Data Analysis
 
-- วิเคราะห์ความสัมพันธ์ระหว่าง **พฤติกรรมราคากับระดับ OI (Open Interest Level)**
-- วัดสถิติ เช่น:
-  - อัตราการเกิด **Breakout** ที่เส้น OI
-  - ความถี่ของการเกิด **Reversal**
-  - คำนวณเป็นเปอร์เซ็นต์เพื่อหาความน่าเชื่อถือของรูปแบบ
+- Analyze the relationship between price behavior and OI (Open Interest Level)
+- Measure statistics such as:
+  - Frequency of Breakout at OI line
+  - Frequency of Reversal occurrences
+  - Calculate as percentage to find pattern reliability
 
-> ตัวอย่างเช่น:  
-> ราคาทะลุผ่านระดับ OI แล้วกลับตัวใน 32% ของกรณีทั้งหมด (ดูได้ในไฟล์ research.pine)
+> Example:
+> Price breaks through OI level then reverses in 32% of all cases (see in research.pine file)
 
 ---
 
 ### 2. Strategy Development (Pine Script)
 
-- พัฒนา **กลยุทธ์การเทรดอัตโนมัติ** ด้วย Pine Script
-- ใช้ระดับ OI เป็นแนวรับ/แนวต้านในการตัดสินใจเข้าออเดอร์
-- วิเคราะห์ผลผ่านการ Backtest เช่น:
+- Develop automated trading strategy with Pine Script
+- Use OI level as support/resistance for order entry decisions
+- Analyze results through Backtest such as:
   - Win rate
   - Max Drawdown
   - Sharpe Ratio
 
 ---
 
+### 3. Order Entry
 
-### 3. การเข้า order
+- Identify when reversal or breakout occurs
+- Once identified, use strategy as follows:
 
-- ดูว่าที่เวลาไหนมีการกลับตัว หรือ เวลาไหนมีการ breakout
-- พอรู้เวลาเสร็จใช้ strategy ดังนี้
-  
-ถ้าเป็น reversal trade
-- หาแท่ง price action (bullish/bearish engulfing)
-- หรือ ใช้ rsi / volume ควบคู่ไปด้วย
-- rr 2:1
+For reversal trades:
+- Find price action candles (bullish/bearish engulfing)
+- Or use RSI / volume together
+- Risk/Reward ratio 2:1
 
-ถ้าเป็น breakout 
-- ไม่เข้าเทรดทันที ให้รอ pullback กลับมายืนบนแนวต้านเดิม
-- ตั้ง buy sell ที่เส้นก่อนหน้า
-- rr 2:1
+For breakout trades:
+- Don't enter immediately, wait for pullback back to previous resistance
+- Set buy/sell at the previous line
+- Risk/Reward ratio 2:1

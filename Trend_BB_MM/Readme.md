@@ -1,54 +1,56 @@
-# 📁 กลยุทธ์การเทรด TFEX (S501!) ด้วย Trend + Momentum + Sideway Strategy
+# TFEX Trading Strategy (S501!) with Trend + Momentum + Sideway Strategy
 
-## 🔰 เป้าหมาย
-สร้างระบบเทรด TFEX ที่ **เลือกกลยุทธ์ให้เหมาะกับสภาวะตลาด** โดยใช้เทคนิคการวิเคราะห์แนวโน้ม (Trend) ก่อน แล้วเลือกเข้าออเดอร์ที่ Timeframe เล็กลงอย่างเหมาะสม
+## Objective
+
+Create a TFEX trading system that selects strategy suitable for market conditions by using Trend analysis technique first, then choosing order entry at smaller Timeframe appropriately.
 
 ---
 
-## ✅ ขั้นตอนที่ 1: วิเคราะห์แนวโน้ม (Trend) บน Timeframe H4
+## Step 1: Trend Analysis on H4 Timeframe
 
-ใช้ **EMA 3 เส้น** เพื่อบอกแนวโน้ม:
+Use 3 EMA lines to indicate trend:
 - EMA(9)
 - EMA(21)
 - EMA(55)
 
-### 🔎 วิธีอ่านแนวโน้ม:
-| เงื่อนไขการเรียงของ EMA | ความหมาย |
-|--------------------------|-----------|
-| EMA(9) > EMA(21) > EMA(55) | ✅ ขาขึ้น (Uptrend) |
-| EMA(9) < EMA(21) < EMA(55) | ✅ ขาลง (Downtrend) |
-| เรียงสลับกัน หรือเบียดกัน | 🔄 Sideway / ไม่มีแนวโน้ม |
+### How to Read Trend:
+
+| EMA Arrangement Condition | Meaning |
+|--------------------------|---------|
+| EMA(9) > EMA(21) > EMA(55) | Uptrend |
+| EMA(9) < EMA(21) < EMA(55) | Downtrend |
+| Mixed or close together | Sideway / No clear trend |
 
 ---
 
-## ✅ ขั้นตอนที่ 2: เข้าเทรดใน Timeframe M15 ตามแนวโน้มที่ได้
+## Step 2: Enter Trade on M15 Timeframe According to Identified Trend
 
-### 🔸 กรณี 2.1: เมื่อมีเทรนด์ (Uptrend หรือ Downtrend)
+### Case 2.1: When there is Trend (Uptrend or Downtrend)
 
-**กลยุทธ์: EMA Crossover (9, 21) ใน M15**
+**Strategy: EMA Crossover (9, 21) on M15**
 
-- เทรดเมื่อกราฟ H1 มีสัญญาณว่าเป็นเทรนด์ (จาก EMA 3 เส้น)
-- รอจังหวะ EMA(9) ตัด EMA(21) ใน TF M15 เพื่อเข้าออเดอร์ตามเทรนด์
+- Trade when H1 chart shows trend signal (from 3-line EMA)
+- Wait for EMA(9) to cross EMA(21) on M15 TF to enter order according to trend
 
-### ตัวอย่าง:
-- H1 เป็นขาขึ้น → เข้า Buy ใน M15 เมื่อ EMA9 ตัด EMA21 ขึ้น
-- H1 เป็นขาลง → เข้า Sell ใน M15 เมื่อ EMA9 ตัด EMA21 ลง
-
----
-
-### 🔸 กรณี 2.2: เมื่อเป็น Sideway
-
-**กลยุทธ์: Bollinger Band + RSI**
-
-ใช้เทรดในกรอบเมื่อไม่มีแนวโน้มชัดเจน
-
-#### 🔁 เงื่อนไขการเข้าเทรด:
-- **Sell** → เมื่อราคาแตะ Upper Bollinger Band และ RSI > 70
-- **Buy** → เมื่อราคาแตะ Lower Bollinger Band และ RSI < 30
-- **SL** : 5% of port tp ที่เส้นกลาง
-
-#### ✅ Timeframe ที่ใช้: M15
+### Example:
+- H1 is uptrend → Enter Buy on M15 when EMA9 crosses EMA21 up
+- H1 is downtrend → Enter Sell on M15 when EMA9 crosses EMA21 down
 
 ---
 
-📈 **ระบบนี้ออกแบบให้เหมาะสำหรับตลาด TFEX ที่มีความผันผวนสูง และสามารถใช้ได้ทั้งช่วงเช้าและบ่าย**
+### Case 2.2: When it's Sideway
+
+**Strategy: Bollinger Band + RSI**
+
+Use range trading when there's no clear trend.
+
+#### Trade Entry Conditions:
+- **Sell** → When price touches Upper Bollinger Band and RSI > 70
+- **Buy** → When price touches Lower Bollinger Band and RSI < 30
+- **SL**: 5% of portfolio at the middle line
+
+#### Timeframe Used: M15
+
+---
+
+This system is designed to suit the TFEX market with high volatility and can be used for both morning and afternoon sessions.

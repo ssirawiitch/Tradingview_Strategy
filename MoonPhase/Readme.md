@@ -1,73 +1,75 @@
-# 🌕 Moon Phase with EMA Cross Strategy (TFEX)
+# Moon Phase with EMA Cross Strategy (TFEX)
 
-โฟลเดอร์นี้เป็นโปรเจกต์ที่ศึกษาและพัฒนา **กลยุทธ์การเทรด TFEX** โดยอ้างอิงจาก **ดวงจันทร์ (Moon Phase)** ผสมผสานกับ **เทคนิค EMA Crossover** เพื่อใช้เป็นสัญญาณในการเข้าและออกออร์เดอร์
-
----
-
-## 📌 แนวคิดเบื้องต้น
-
-เราเริ่มต้นจากสมมติฐานที่ว่า:
-
-> 🌝 "หากเป็น **ข้างขึ้น** (waxing moon) ตลาดจะมีแนวโน้ม **ลง**  
-> 🌚 หากเป็น **ข้างแรม** (waning moon) ตลาดจะมีแนวโน้ม **ขึ้น**"
-
-ซึ่งจะพิสูจน์สมมติฐานนี้โดยการ backtest ย้อนหลัง
+This folder is a project to study and develop a TFEX trading strategy based on Moon Phase combined with EMA Crossover technique for entry and exit signals.
 
 ---
 
-## 🧪 การพิสูจน์สมมติฐาน
+## Initial Concept
 
-สามารถดูผลการ backtest และการวิเคราะห์สมมติฐานนี้ได้ในไฟล์:
+We started from the assumption that:
 
-📁 `prove.ipynb`  
-ซึ่งใช้ Python ในการ:
+> If it's a waxing moon, the market tends to move DOWN
+> If it's a waning moon, the market tends to move UP
 
-- ดึงข้อมูล TFEX
-- คำนวณ moon phase รายวัน
-- แบ่งข้อมูลเป็นข้างขึ้น / ข้างแรม
-- คำนวณผลตอบแทนเฉลี่ยในแต่ละช่วง  
-  และแสดงเปอร์เซ็นต์การเคลื่อนไหวของตลาดในแต่ละ phase
+This will be proven through backtesting.
 
 ---
 
-## ⚙️ กลยุทธ์ใน Pine Script (สำหรับ TradingView)
+## Hypothesis Verification
 
-กลยุทธ์นี้ถูกเขียนไว้ในไฟล์:
+You can view the backtest results and analysis of this hypothesis in the file:
 
-📄 `assignment4_ver2.pine`
+`prove.ipynb`
 
-### 🎯 กฎการเข้าออร์เดอร์ (Entry Rules)
+Which uses Python to:
 
-#### ✅ Buy (เข้า Long)
-- เมื่ออยู่ใน **ข้างแรม** หรือหลังจากขึ้น 15 ค่ำไปแล้ว
-- และเกิด **EMA cross ขึ้น** โดยใช้ค่า EMA:
+- Retrieve TFEX data
+- Calculate daily moon phase
+- Divide data into waxing and waning periods
+- Calculate average returns in each period
+- Display the percentage of market movement in each phase
+
+---
+
+## Strategy in Pine Script (for TradingView)
+
+This strategy is written in the file:
+
+`assignment4_ver2.pine`
+
+### Entry Rules
+
+#### Buy (Long Entry)
+- When in waning period or after waxing for 15 days
+- And an EMA cross up occurs using:
   - Short EMA: 15
-  - Long EMA: 50 in timeframe 15 mins
+  - Long EMA: 50 in 15 mins timeframe
 
-#### ✅ Sell (เข้า Short)
-- เมื่ออยู่ใน **ข้างขึ้น**
-- และเกิด **EMA cross ลง** (15 ตัดลง 50)
+#### Sell (Short Entry)
+- When in waxing period
+- And an EMA cross down occurs (15 crosses below 50)
 
-### ❌ กฎการออกออร์เดอร์ (Exit Rules)
-- ปิดทุกออร์เดอร์ทันทีเมื่อเกิด **Moon Phase Change** (จากข้างขึ้น → ข้างแรม หรือกลับกัน)
-- หรือปิด position ตามทิศทางตรงข้ามของ EMA crossover
-
----
-
-## 📊 ตัวอย่างผลลัพธ์
-สามารถดูพฤติกรรมของกลยุทธ์ และสัญญาณการเทรดได้โดยตรงจากกราฟใน TradingView  
-พร้อมทั้งมีการแสดงสัญลักษณ์ 🌑 (New Moon) และ 🌕 (Full Moon) บนกราฟด้วย
+### Exit Rules
+- Close all orders immediately when Moon Phase changes (from waxing to waning or vice versa)
+- Or close position on opposite EMA crossover direction
 
 ---
 
-## 🧠 ข้อเสนอแนะในการพัฒนาเพิ่มเติม
-- ทดสอบกับ timeframe อื่น ๆ เช่น 1H, 1D
-- เพิ่ม stop loss / take profit
-- ใช้ machine learning เพื่อหา pattern เพิ่มเติม
+## Example Results
+
+You can view the strategy behavior and trading signals directly from the TradingView chart.
 
 ---
 
-## 👤 ผู้จัดทำ
+## Suggestions for Further Development
+
+- Test with other timeframes such as 1H, 1D
+- Add stop loss / take profit
+- Use machine learning to discover additional patterns
+
+---
+
+## Author
 
 Sirawitch Chairuangsirikul  
 
